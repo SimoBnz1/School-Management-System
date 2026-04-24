@@ -13,3 +13,21 @@ function checkemail($conn, $email)
         echo $e->getMessage();
     }
 }
+
+function addUser($conn, $firstname, $lastname, $email, $password)
+{
+    try {
+        $sql = "INSERT INTO users (firstname,lastname,email,password,role_id)
+        VALUES (:firstname,:lastname,:email,:password,:role_id)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'email' => $email,
+            'password' => $password,
+            'role_id' => 3
+        ]);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
