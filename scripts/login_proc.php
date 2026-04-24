@@ -22,3 +22,10 @@ function getPassword($email, $password, $conn)
         echo $e->getMessage();
     }
 };
+
+if (isset($_POST['login'])) {
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+
+  
+};
