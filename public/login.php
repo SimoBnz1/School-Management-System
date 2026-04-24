@@ -8,7 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    
+    <?php
+    if(isset($_GET["err"])){
+        if($_GET["err"]=="wrong"){
+            ?>
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+  <span class="font-medium">mot de pass incorrect !!!!!!!!</span>
+</div>
+            <?php
+        }
+    }
+    ?>
     <main>
         <section class="bg-gray-50 dark:bg-gray-900">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
