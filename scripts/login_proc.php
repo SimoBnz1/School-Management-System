@@ -27,5 +27,14 @@ if (isset($_POST['login'])) {
     $email=$_POST['email'];
     $password=$_POST['password'];
 
-  
+   if (getPassword($email,$password,$conn)) {
+    $user=getPassword($email,$password,$conn);
+    $_SESSION['firstname']=$user['firstname'];
+    $_SESSION['lastname']=$user['lastname'];
+    header("Location: ../public/dashboard.php");
+    exit();
+   }else{
+    header("Location:../public/login.php?err=wrong");
+    exit();
+   };
 };
