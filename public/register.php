@@ -8,7 +8,16 @@
 </head>
 
 <body>
-   
+    <?php 
+        if (isset($_GET["err"])) {
+            if ($_GET["err"]=="champVid") {
+           
+    ?>
+    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert"> 
+        <span class="font-medium">Un champ vide !!!!!!!</span> </div>
+         <?php 
+         } 
+         } ?>
 
 
     <main class="md:">
