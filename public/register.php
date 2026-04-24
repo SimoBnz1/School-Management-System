@@ -23,7 +23,12 @@
     <main class="md:">
         <section class="bg-blue-50 dark:bg-blue-900 min-h-screen flex items-center justify-center">
             <div class="w-full max-w-2xl bg-white rounded-lg shadow dark:bg-blue-800 dark:border dark:border-blue-700 p-6">
-
+            <div class="flex items-center">
+                 <?php 
+     include '../includes/logo.php';
+     
+     ?>
+            </div>
                 <h1 class="text-xl font-bold text-blue-900 md:text-2xl dark:text-white mb-6 text-center">
                     Create an account
                 </h1>
@@ -91,6 +96,10 @@
             </div>
         </section>
     </main>
+    <?php 
+    include '../includes/footer.php';
+    
+    ?>
 </body>
 
 </html>
