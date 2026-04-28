@@ -31,7 +31,8 @@ if (isset($_POST['login'])) {
     $user=getPassword($email,$password,$conn);
     $_SESSION['firstname']=$user['firstname'];
     $_SESSION['lastname']=$user['lastname'];
-    header("Location: ../public/dashboard.php");
+    $_SESSION["id"]=$user["id"];
+    header("Location: ../prof/aside.php");
     exit();
    }else{
     header("Location:../public/login.php?err=wrong");

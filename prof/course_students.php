@@ -1,3 +1,1 @@
-<?php
-include "./aside.php";
-?>
+

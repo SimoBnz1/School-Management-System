@@ -1,5 +1,7 @@
 
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en" class="dark">
 
@@ -401,7 +403,9 @@
             <main class="flex-1 overflow-y-auto px-6 py-6 space-y-6">
 
                 <!-- ── STAT CARDS ── -->
-              
+              <?php
+              require_once __DIR__ . '/class_details.php';
+              ?>
                 <!-- END BOTTOM GRID -->
 
             </main>
