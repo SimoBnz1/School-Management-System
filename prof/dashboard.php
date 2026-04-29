@@ -1,56 +1,57 @@
 <?php
-session_start();
-require_once("../School-Management-System/scripts/connection.php");
+require '../scripts/connection.php';
 
-// 🔐 Vérification session + role
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'prof') {
-    header("Location: ../School-Management-System/public/login.php");
-    exit();
-}
+/* total students */
+$stmt = $conn->query("SELECT COUNT(*) as total FROM students");
+$total_students = $stmt->fetch()['total'];
 
-// 📌 جلب cours ديال prof
-$stmt = $pdo->prepare("SELECT * FROM courses WHERE prof_id = ?");
-$stmt->execute([$_SESSION['user_id']]);
-$courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+/* total courses */
+$stmt = $conn->query("SELECT COUNT(*) as total FROM courses");
+$total_courses = $stmt->fetch()['total'];
+
+/* total classes */
+$stmt = $conn->query("SELECT COUNT(*) as total FROM classes");
+$total_classes = $stmt->fetch()['total'];
 ?>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Prof Dashboard</title>
-</head>
-<body>
+    <!-- Students Card -->
+    <div class="rounded-3xl p-8 bg-gradient-to-br from-[#1a1a2e] to-[#16213e] border border-white/10 shadow-xl hover:scale-[1.02] transition">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-white/60">Students</p>
+                <h2 class="text-4xl font-bold mt-3 text-white"><?= $total_students ?></h2>
+            </div>
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-purple-500/20 text-xl">
+                👨‍🎓
+            </div>
+        </div>
+    </div>
 
-<h2>Bienvenue Prof 👨‍🏫</h2>
+    <!-- Courses Card -->
+    <div class="rounded-3xl p-8 bg-gradient-to-br from-[#0f2027] to-[#203a43] border border-white/10 shadow-xl hover:scale-[1.02] transition">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-white/60">Courses</p>
+                <h2 class="text-4xl font-bold mt-3 text-white"><?= $total_courses ?></h2>
+            </div>
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-blue-500/20 text-xl">
+                📚
+            </div>
+        </div>
+    </div>
 
-<h3>Mes cours</h3>
+    <!-- Classes Card -->
+    <div class="rounded-3xl p-8 bg-gradient-to-br from-[#1f1c2c] to-[#928dab] border border-white/10 shadow-xl hover:scale-[1.02] transition">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-white/60">Classes</p>
+                <h2 class="text-4xl font-bold mt-3 text-white"><?= $total_classes ?></h2>
+            </div>
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-cyan-500/20 text-xl">
+                🏫
+            </div>
+        </div>
+    </div>
 
-<?php if ($courses): ?>
-    <ul>
-        <?php foreach ($courses as $course): ?>
-            <li>
-                <strong><?php echo $course['name']; ?></strong>
-
-                <!-- Voir étudiants -->
-                <a href="course_students.php?id=<?php echo $course['id']; ?>">
-                    Voir étudiants
-                </a>
-
-                <!-- Voir classe -->
-                <a href="class_details.php?id=<?php echo $course['class_id']; ?>">
-                    Voir classe
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-<?php else: ?>
-    <p>Aucun cours trouvé.</p>
-<?php endif; ?>
-
-<br>
-
-<!-- Logout -->
-<a href="../logout.php">Se déconnecter</a>
-
-</body>
-</html>
+</div>

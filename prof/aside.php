@@ -282,7 +282,8 @@ session_start();
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
-                    Dashboard
+                    
+                    <a href="?page=dashboard">Dashboard</a>
                 </div>
 
                 <!-- Users -->
@@ -290,7 +291,8 @@ session_start();
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    students
+                    <a href="?page=students">students</a>
+                    
                     <span class="ml-auto badge bg-blue-500/20 text-blue-300 border border-blue-500/30">2.4k</span>
                 </div>
 
@@ -299,7 +301,8 @@ session_start();
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                     </svg>
-                    classes
+                    <a href="?page=classes">Classes</a>
+                    
                     <span class="ml-auto badge bg-purple-500/20 text-purple-300 border border-purple-500/30">48</span>
                 </div>
 
@@ -324,14 +327,14 @@ session_start();
             </nav>
 
             <!-- Sidebar footer: user mini profile -->
-            <div class="glass-card rounded-2xl p-4 flex items-center gap-3">
+            <!-- <div class="glass-card rounded-2xl p-4 flex items-center gap-3">
                 <div class="avatar" style="background: linear-gradient(135deg,#7b5ea7,#3b82f6);">AK</div>
                 <div class="flex-1 min-w-0">
                     <div class="text-sm font-semibold text-white truncate"></div>
                     <div class="text-xs text-white/40 font-mono truncate">admin</div>
                 </div>
                 <div class="w-2 h-2 rounded-full bg-lime-400" style="box-shadow: 0 0 6px #a3e635;"></div>
-            </div>
+            </div> -->
 
         </aside>
         <!-- END SIDEBAR -->
@@ -404,8 +407,24 @@ session_start();
 
                 <!-- ── STAT CARDS ── -->
               <?php
-              require_once __DIR__ . '/class_details.php';
-              ?>
+$page = $_GET['page'] ?? 'dashboard';
+
+if ($page == 'dashboard') {
+    require_once __DIR__ . '/dashboard.php';
+}
+
+elseif ($page == 'classes') {
+    require_once __DIR__ . '/class_details.php';
+}
+
+elseif ($page == 'courses') {
+    require_once __DIR__ . '/courses.php';
+}
+
+else {
+    echo "<h2>الصفحة غير موجودة</h2>";
+}
+?>
                 <!-- END BOTTOM GRID -->
 
             </main>
