@@ -2,6 +2,7 @@ login_logique
 <?php
 session_start();
 require '../scripts/connection.php';
+include  '../public/dashboard.php';
 function getPassword($email, $password, $conn)
 {
     try {
@@ -29,9 +30,10 @@ if (isset($_POST['login'])) {
 
    if (getPassword($email,$password,$conn)) {
     $user=getPassword($email,$password,$conn);
+    $_SESSION['user_id']=$user['id'];
     $_SESSION['firstname']=$user['firstname'];
     $_SESSION['lastname']=$user['lastname'];
-    header("Location: ../public/dashboard.php");
+    header("Location: ../student/dashboard.php");
     exit();
    }else{
     header("Location:../public/login.php?err=wrong");
