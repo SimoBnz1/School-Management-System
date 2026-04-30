@@ -4,77 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./style.css">
-    
+    <title>Create New Class</title>
 </head>
 
-<body class="bg-[#0f172a] text-gray-100 font-sans">
-
+<body class="bg-[#020617] text-gray-100 font-sans tracking-tight">
 <?php 
-if (isset($_GET["err"]) && $_GET["err"] == "champVid") {
+require '../../scripts/connection.php';
+    $sql = "SELECT * 
+            FROM users WHERE role_id=2";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $prof =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
+<?php if (isset($_GET["err"]) && $_GET["err"] == "champVid"): ?>
     <div class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-full max-w-md px-4">
-        <div class="p-4 rounded-xl bg-red-500/10 border border-red-500/50 text-red-400 text-sm flex items-center gap-3 shadow-lg backdrop-blur-md">
+        <div class="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-3 backdrop-blur-xl shadow-2xl">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span class="font-medium text-center flex-1">Please fill in all required fields!</span>
+            <span class="font-bold">Missing Info! Fill everything, please.</span>
         </div>
     </div>
-<?php 
-} 
-?>
+<?php endif; ?>
 
-<main class="min-h-screen flex items-center justify-center p-6">
-    <!-- Main Card -->
-    <div class="glass-card w-full max-w-2xl rounded-2xl shadow-2xl p-8 relative overflow-hidden">
+<main class="min-h-screen flex items-center justify-center p-6 bg-[#020617]">
+    
+    <!-- Glow behind the card -->
+    <div class="absolute w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px]"></div>
+
+    <div class="relative w-full max-w-2xl bg-[#0f172a]/40 backdrop-blur-2xl border border-white/5 rounded-[3rem] p-10 md:p-16 shadow-2xl">
         
-        <!-- Decoration Gradient -->
-        <div class="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl"></div>
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-emerald-500/10 rounded-3xl mb-6 border border-emerald-500/20">
+                <?php include '../../includes/logo.php'; ?>
+            </div>
+            <h1 class="text-4xl font-black text-white italic tracking-tighter uppercase">
+                Add <span class="text-emerald-500 underline decoration-emerald-500/30 underline-offset-8">Course</span>
+            </h1>
+        </div>
 
-        <div class="relative z-10">
-            <!-- Logo & Title -->
-            <div class="flex flex-col items-center mb-8">
-                <div class="mb-4">
-                    <?php include '../../includes/logo.php'; ?>
-                </div>
-                <h1 class="text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">
-                    Create New Class
-                </h1>
-                <p class="text-gray-400 text-sm mt-2">Enter details to register a new class</p>
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10" method="POST" action="../../scripts/add_Cours.php">
+            
+            <!-- Input Title -->
+            <div class="relative group">
+                <input type="text" name="title" required
+                    class="peer w-full bg-transparent border-b-2 border-slate-700 py-2 text-white outline-none focus:border-emerald-500 transition-colors placeholder-transparent"
+                    placeholder="Course Title">
+                <label class="absolute left-0 -top-5 text-[10px] font-black uppercase tracking-widest text-emerald-500/60 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-emerald-500">
+                    Course Title
+                </label>
             </div>
 
-            <form class="grid grid-cols-1 md:grid-cols-2 gap-5" method="POST" action="../../scripts/add_Cours.php">
-                <!-- First Name -->
-                <div class="space-y-1">
-                    <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider ml-1">Title</label>
-                    <input type="text" name="title" 
-                        class="input-style w-full p-3 rounded-xl">
-                </div>
-                <!-- Last Name -->
-                <div class="space-y-1">
-                    <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider ml-1">description</label>
-                    <input type="text" name="discription" 
-                        class="input-style w-full p-3 rounded-xl">
-                </div>
-                <div class="space-y-1">
-                    <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider ml-1">total_hour</label>
-                    <input type="number" name="total_hour" 
-                        class="input-style w-full p-3 rounded-xl">
-                </div>
-                <div class="space-y-1">
-                    <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider ml-1">Prof</label>
-                    <input type="number" name="prof" 
-                        class="input-style w-full p-3 rounded-xl">
-                </div>
-                <!-- Submit -->
-                <div class="md:col-span-2 pt-4">
-                    <button type="submit" 
-                        class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white py-3.5 rounded-xl font-bold shadow-lg shadow-green-900/20 transform transition hover:-translate-y-0.5 active:scale-95">
-                        Ajouter Cours
-                    </button>
-                </div>
+            <!-- Input Description -->
+            <div class="relative group">
+                <input type="text" name="discription" required
+                    class="peer w-full bg-transparent border-b-2 border-slate-700 py-2 text-white outline-none focus:border-emerald-500 transition-colors placeholder-transparent"
+                    placeholder="Description">
+                <label class="absolute left-0 -top-5 text-[10px] font-black uppercase tracking-widest text-emerald-500/60 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-emerald-500">
+                    Description
+                </label>
+            </div>
 
-            </form>
-        </div>
+            <!-- Input Hours -->
+            <div class="relative group">
+                <input type="number" name="total_hour" required
+                    class="peer w-full bg-transparent border-b-2 border-slate-700 py-2 text-white outline-none focus:border-emerald-500 transition-colors placeholder-transparent"
+                    placeholder="Hours">
+                <label class="absolute left-0 -top-5 text-[10px] font-black uppercase tracking-widest text-emerald-500/60 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-emerald-500">
+                    Total Hours
+                </label>
+            </div>
+
+            <!-- Input Prof -->
+            <div class="relative group">
+                
+                 <select name="prof"
+                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            <option value="">Select class</option>
+                            <?php foreach ($prof as $p): ?>
+                                <option value="<?php echo $p['id']; ?>">
+                                    <?php echo htmlspecialchars($p['firstname']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="md:col-span-2 pt-6">
+                <button type="submit" 
+                    class="w-full bg-white text-[#020617] py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-emerald-400 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] active:scale-95">
+                    Save New Course
+                </button>
+            </div>
+
+        </form>
     </div>
 </main>
 
