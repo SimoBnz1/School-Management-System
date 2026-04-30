@@ -1,25 +1,5 @@
 <?php
 require '../scripts/connection.php';
-
-
-// session_start();
-// require '../scripts/connection.php';
-
-// $user_id = $_SESSION['id'] ?? null;
-
-// if (!$user_id) {
-//     die("User not logged in");
-// }
-
-// /* نجيب role ديال user */
-// $stmt = $conn->prepare("SELECT role_id FROM users WHERE id = ?");
-// $stmt->execute([$user_id]);
-// $user = $stmt->fetch();
-
-// /* إلا ماشي prof (role_id = 2) */
-// if ($user['role_id'] != 2) {
-//     die("Access denied ❌ (Only Prof)");
-// }
 /* total students */
 $stmt = $conn->query("SELECT COUNT(*) as total FROM students");
 $total_students = $stmt->fetch()['total'];
