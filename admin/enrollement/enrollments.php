@@ -98,7 +98,7 @@ $enrollments = $stmt->fetchAll();
                                                 </a>
 
                                                 <!-- DELETE -->
-                                                <a href="delete_user.php?id=<?= $e['id'] ?>"
+                                                <a href="delet_enr.php?id=<?= $e['id'] ?>"
                                                     onclick="return confirm('Delete this user?')"
                                                     class="text-red-400 hover:text-red-300 transition">
                                                     <button>Delete</button>
