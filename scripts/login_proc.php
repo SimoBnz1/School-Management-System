@@ -29,6 +29,7 @@ if (isset($_POST['login'])) {
 
    if (getPassword($email,$password,$conn)) {
     $user=getPassword($email,$password,$conn);
+    $_SESSION['user_id']=$user['id'];
     $_SESSION['firstname']=$user['firstname'];
     $_SESSION['lastname']=$user['lastname'];
     $_SESSION['role']=$user['role_id'];
