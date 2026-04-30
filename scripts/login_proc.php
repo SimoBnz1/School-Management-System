@@ -27,15 +27,15 @@ if (isset($_POST['login'])) {
     $email=$_POST['email'];
     $password=$_POST['password'];
 
-   if (getPassword($email,$password,$conn)) {
-    $user=getPassword($email,$password,$conn);
-    $_SESSION['firstname']=$user['firstname'];
-    $_SESSION['lastname']=$user['lastname'];
-    $_SESSION["id"]=$user["id"];
+   $user = getPassword($email,$password,$conn);
+
+if ($user) {
+    $_SESSION['firstname'] = $user['firstname'];
+    $_SESSION['lastname']  = $user['lastname'];
+    $_SESSION['id']        = $user['id'];
+    $_SESSION['role_id']   = $user['role_id'];
+
     header("Location: ../prof/aside.php");
     exit();
-   }else{
-    header("Location:../public/login.php?err=wrong");
-    exit();
-   };
+}
 };
