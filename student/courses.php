@@ -84,6 +84,9 @@ $colors = [
         .sidebar-link:hover { background: rgba(99,102,241,0.15); color: white; }
         .sidebar-link.active { background: rgba(99,102,241,0.2); color: #818cf8; border-left: 3px solid #6366f1; }
 
+
+
+        
         .course-card {
             border-radius: 16px;
             padding: 24px;
