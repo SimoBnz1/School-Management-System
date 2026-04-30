@@ -1,8 +1,13 @@
 
 <?php
 session_start();
-?>
 
+if(!isset($_SESSION['id']) || $_SESSION['role_id'] != 2){
+    header("location: ../public/login.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" class="dark">
 
@@ -283,7 +288,7 @@ session_start();
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
-                    Dashboard
+                    <a href="?page=dashboard">Dashboard</a>
                 </div>
 
                 <!-- Users -->
@@ -326,9 +331,9 @@ session_start();
                 <div class="avatar" style="background: linear-gradient(135deg,#7b5ea7,#3b82f6);">AK</div>
                 <div class="flex-1 min-w-0">
                     <div class="text-sm font-semibold text-white truncate"></div>
-                    <div class="text-xs text-white/40 font-mono truncate">admin</div>
+                    <div class="text-xs text-white/40 font-mono truncate">prof</div>
                 </div>
-                <div class="w-2 h-2 rounded-full bg-lime-400" style="box-shadow: 0 0 6px #a3e635;"></div>
+                <div class="w-2 h-2 rounded-full bg-[#35cbe6]" style="box-shadow: 0 0 6px #35cbe6;"></div>
             </div>
 
         </aside>
@@ -412,8 +417,8 @@ session_start();
               require_once __DIR__ . '/class_details.php';
           }
 
-          elseif ($page == 'courses') {
-              require_once __DIR__ . '/courses.php';
+          elseif ($page == 'students') {
+              require_once __DIR__ . '/students.php';
           }
 
           else {

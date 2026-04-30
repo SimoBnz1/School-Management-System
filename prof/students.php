@@ -9,7 +9,7 @@ $stmt = $conn->prepare("
         courses.title,
         courses.total_hours,
         COUNT(enrollments.student_id) AS total_students,
-        GROUP_CONCAT(CONCAT(users.firstname, ' ', users.lastname) SEPARATOR ', ') AS students_names
+        users.firstname AS students_names
     FROM courses
     LEFT JOIN enrollments 
         ON courses.id = enrollments.course_id
@@ -45,7 +45,7 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td class="py-3 px-4"><?= $student['total_hours'] ?></td>
                     <td class="py-3 px-4"><?= $student['total_students'] ?></td>
                     <td class="py-3 px-4">
-    <?= $student['students_names'] ?? 'No students' ?>
+            <?= $student['students_names'] ?? 'No students' ?>
 </td>
                 </tr>
             <?php } ?>
