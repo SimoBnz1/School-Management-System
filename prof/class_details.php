@@ -44,7 +44,12 @@ $classes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <td class="py-3 px-4"><?= $class['name'] ?></td>
                 <td class="py-3 px-4"><?= $class['classroom_number'] ?></td>
                 <td class="py-3 px-4"><?= $class['total_students'] ?></td>
-                <td class="py-3 px-4"><?= $class['status'] ?></td>
+                <td class="py-3 px-4">
+            <a href="#<?= $class['id'] ?>&status=<?= $class['status'] ?>" 
+            class="px-3 py-1 rounded-lg <?= $class['status'] == 'Actif' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400' ?>">
+                <?= $class['status'] ?>
+            </a>
+        </td>
             </tr>
         <?php } ?>
     </tbody>

@@ -407,24 +407,24 @@ session_start();
 
                 <!-- ── STAT CARDS ── -->
               <?php
-$page = $_GET['page'] ?? 'dashboard';
+          $page = $_GET['page'] ?? 'dashboard';
 
-if ($page == 'dashboard') {
-    require_once __DIR__ . '/dashboard.php';
-}
+          if ($page == 'dashboard') {
+              require_once __DIR__ . '/dashboard.php';
+          }
 
-elseif ($page == 'classes') {
-    require_once __DIR__ . '/class_details.php';
-}
+          elseif ($page == 'classes') {
+              require_once __DIR__ . '/class_details.php';
+          }
 
-elseif ($page == 'courses') {
-    require_once __DIR__ . '/courses.php';
-}
+          elseif ($page == 'courses') {
+              require_once __DIR__ . '/courses.php';
+          }
 
-else {
-    echo "<h2>الصفحة غير موجودة</h2>";
-}
-?>
+          else {
+              echo "<h2>الصفحة غير موجودة</h2>";
+          }
+          ?>
                 <!-- END BOTTOM GRID -->
 
             </main>
