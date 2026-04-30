@@ -10,18 +10,18 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 // Student info + class
-// try {
-//     $req_info = "SELECT u.firstname, u.lastname, s.student_number, c.name AS class_name, c.classroom_number
-//                  FROM users u
-//                  JOIN students s ON u.id = s.user_id
-//                  JOIN classes c ON s.class_id = c.id
-//                  WHERE u.id = :user_id";
-//     $stmt_info = $conn->prepare($req_info);
-//     $stmt_info->execute([':user_id' => $user_id]);
-//     $student_info = $stmt_info->fetch(PDO::FETCH_OBJ);
-// } catch (PDOException $e) {
-//     $student_info = null;
-// }
+try {
+    $req_info = "SELECT u.firstname, u.lastname, s.student_number, c.name AS class_name, c.classroom_number
+                 FROM users u
+                 JOIN students s ON u.id = s.user_id
+                 JOIN classes c ON s.class_id = c.id
+                 WHERE u.id = :user_id";
+    $stmt_info = $conn->prepare($req_info);
+    $stmt_info->execute([':user_id' => $user_id]);
+    $student_info = $stmt_info->fetch(PDO::FETCH_OBJ);
+} catch (PDOException $e) {
+    $student_info = null;
+}
 
 // Enrolled courses + professor
 try {
