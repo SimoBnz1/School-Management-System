@@ -1,4 +1,4 @@
-login_logique
+
 <?php
 session_start();
 require '../scripts/connection.php';
@@ -31,7 +31,8 @@ if (isset($_POST['login'])) {
     $user=getPassword($email,$password,$conn);
     $_SESSION['firstname']=$user['firstname'];
     $_SESSION['lastname']=$user['lastname'];
-    header("Location: ../public/dashboard.php");
+    $_SESSION['role']=$user['role_id'];
+    header("Location: ../admin/dashboard.php");
     exit();
    }else{
     header("Location:../public/login.php?err=wrong");
