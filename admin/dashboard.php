@@ -10,12 +10,26 @@ if ($_SESSION['role'] != "1") {
 ?>
 <?php
 require '../scripts/connection.php';
-$sql = "SELECT COUNT(*)  FROM users WHERE id=3";
+$sql = "SELECT COUNT(*)  FROM users WHERE role_id=3";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $users = $stmt->fetchColumn();
 
+
+$sql = "SELECT COUNT(*)  FROM courses ";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$courses = $stmt->fetchColumn();
+
+
+
+$sql = "SELECT COUNT(*)  FROM classes ";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$classes = $stmt->fetchColumn();
 
 ?>
 
@@ -323,7 +337,7 @@ $users = $stmt->fetchColumn();
                             <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all"></div>
                             <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest">Active Professors</p>
                             <div class="mt-4 flex items-baseline gap-2">
-                                <h2 class="text-5xl font-black text-white italic">84</h2>
+                                <h2 class="text-5xl font-black text-white italic"><?= $courses ?></h2>
                                 <span class="text-blue-400 text-xs font-bold">Active</span>
                             </div>
                             <div class="mt-6 flex -space-x-3 overflow-hidden">
@@ -339,7 +353,7 @@ $users = $stmt->fetchColumn();
                             <div class="absolute -right-4 -top-4 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
                             <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest">Active Courses</p>
                             <div class="mt-4 flex items-baseline gap-2">
-                                <h2 class="text-5xl font-black text-white italic">42</h2>
+                                <h2 class="text-5xl font-black text-white italic"><?= $classes ?></h2>
                                 <span class="text-purple-400 text-xs font-bold">Live</span>
                             </div>
                             <p class="mt-4 text-gray-500 text-[10px] leading-relaxed">Engaged in 12 different categories across all departments.</p>
