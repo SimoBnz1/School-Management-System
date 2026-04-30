@@ -9,7 +9,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Récupérer le profil
 $sql = "SELECT u.firstname, u.lastname, u.email,
         s.student_number, s.dateofbirth,
         c.name AS class_name, c.classroom_number
@@ -20,7 +19,6 @@ $sql = "SELECT u.firstname, u.lastname, u.email,
 $resultat = $conn->query($sql);
 $profile = $resultat->fetch(PDO::FETCH_OBJ);
 
-// Compter les cours
 $sql2 = "SELECT COUNT(*) AS total FROM enrollments e
         JOIN students s ON e.student_id = s.id
         WHERE s.user_id = $user_id";
