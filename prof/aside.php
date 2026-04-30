@@ -2,6 +2,7 @@
 <?php
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en" class="dark">
 
@@ -282,8 +283,7 @@ session_start();
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
-                    
-                    <a href="?page=dashboard">Dashboard</a>
+                    Dashboard
                 </div>
 
                 <!-- Users -->
@@ -301,18 +301,13 @@ session_start();
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                     </svg>
-                    <a href="?page=classes">Classes</a>
                     
+                    <a href="?page=classes">classes</a>
                     <span class="ml-auto badge bg-purple-500/20 text-purple-300 border border-purple-500/30">48</span>
                 </div>
 
                 <!-- Orders -->
-                <div class="nav-item">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                    courses
-                </div>
+                
 
                 <div class="text-xs font-mono text-white/25 px-3 pb-2 pt-4 uppercase tracking-widest">System</div>
 
@@ -327,14 +322,14 @@ session_start();
             </nav>
 
             <!-- Sidebar footer: user mini profile -->
-            <!-- <div class="glass-card rounded-2xl p-4 flex items-center gap-3">
+            <div class="glass-card rounded-2xl p-4 flex items-center gap-3">
                 <div class="avatar" style="background: linear-gradient(135deg,#7b5ea7,#3b82f6);">AK</div>
                 <div class="flex-1 min-w-0">
                     <div class="text-sm font-semibold text-white truncate"></div>
                     <div class="text-xs text-white/40 font-mono truncate">admin</div>
                 </div>
                 <div class="w-2 h-2 rounded-full bg-lime-400" style="box-shadow: 0 0 6px #a3e635;"></div>
-            </div> -->
+            </div>
 
         </aside>
         <!-- END SIDEBAR -->
@@ -426,6 +421,10 @@ session_start();
           }
           ?>
                 <!-- END BOTTOM GRID -->
+                 
+
+
+
 
             </main>
             <!-- END MAIN -->
