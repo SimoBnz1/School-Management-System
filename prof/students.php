@@ -9,16 +9,16 @@ $stmt = $conn->prepare("
         courses.title,
         courses.total_hours,
         COUNT(enrollments.student_id) AS total_students,
-        GROUP_CONCAT(users.firstname) AS firstnames,
-        GROUP_CONCAT(users.lastname) AS lastnames
+        GROUP_CONCAT(CONCAT(users.firstname, ' ', users.lastname) SEPARATOR ', ') AS students_names
     FROM courses
     LEFT JOIN enrollments 
         ON courses.id = enrollments.course_id
+    LEFT JOIN students 
+        ON students.id = enrollments.student_id
     LEFT JOIN users 
-        ON users.id = enrollments.student_id
+        ON users.id = students.user_id
     GROUP BY courses.id, courses.title, courses.total_hours
 ");
-
 $stmt->execute();
 $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -33,29 +33,24 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <th class="py-3 px-4 text-left">Title</th>
             <th class="py-3 px-4 text-left">Hours</th>
             <th class="py-3 px-4 text-left">Students</th>
-             <th class="py-3 px-4 text-left">firstname</th>
-            <th class="py-3 px-4 text-left">lastname</th>
+             <th class="py-3 px-4 text-left">name</th>
         </tr>
     </thead>
 
-    <tbody class="divide-y divide-gray-700">
-        <?php foreach($students as $student){ ?>
-            <tr class="hover:bg-gray-800 transition">
-                <td class="py-3 px-4"><?= $student['id'] ?></td>
-                <td class="py-3 px-4"><?= htmlspecialchars($student['title']) ?></td>
-                
-                
-                <td class="py-3 px-4"><?= $student['total_hours'] ?></td>
-<td class="py-3 px-4"><?= $student['total_students'] ?></td>
-<td><?= $student['firstnames'] ?></td>
-    <td><?= $student['lastnames'] ?></td>
-                <!-- <td class="py-3 px-4">
-                    <a href="course_students.php?course_id=<?= $course['id'] ?>" 
-                       class="bg-blue-600 px-3 py-1 rounded text-white hover:bg-blue-700">
-                        View Students
-                    </a>
-                </td> -->
-            </tr>
-        <?php } ?>
+            <tbody class="divide-y divide-gray-700">
+            <?php foreach($students as $student){ ?>
+                <tr class="hover:bg-gray-800 transition">
+                    <td class="py-3 px-4"><?= $student['id'] ?></td>
+                    <td class="py-3 px-4"><?= htmlspecialchars($student['title']) ?></td>
+                    <td class="py-3 px-4"><?= $student['total_hours'] ?></td>
+                    <td class="py-3 px-4"><?= $student['total_students'] ?></td>
+                    <td class="py-3 px-4">
+    <?= $student['students_names'] ?? 'No students' ?>
+</td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </tr>
+        <?php ?>
     </tbody>
 </table>
