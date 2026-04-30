@@ -29,10 +29,10 @@ if (isset($_POST['login'])) {
 
    if (getPassword($email,$password,$conn)) {
     $user=getPassword($email,$password,$conn);
+    $_SESSION['user_id']=$user['id'];
     $_SESSION['firstname']=$user['firstname'];
     $_SESSION['lastname']=$user['lastname'];
-    $_SESSION["id"]=$user["id"];
-    header("Location: ../prof/aside.php");
+    header("Location: ../student/dashboard.php");
     exit();
    }else{
     header("Location:../public/login.php?err=wrong");
