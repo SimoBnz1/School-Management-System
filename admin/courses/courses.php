@@ -7,7 +7,10 @@ if ($_SESSION['role'] != "1") {
     header('Location: ../public/login.php');
     exit();
 };
-$sql = "SELECT * FROM courses ORDER BY id DESC";
+$sql = "SELECT courses.*, users.firstname 
+        FROM courses
+        INNER JOIN users ON courses.user_id = users.id
+        ORDER BY courses.id DESC";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
@@ -83,7 +86,7 @@ $courses = $stmt->fetchAll();
                                         <td class="py-3"><?= $cr['title'] ?></td>
                                         <td class="py-3"><?= $cr['description'] ?></td>
                                         <td class="py-3"><?= $cr['total_hours'] ?></td>
-                                        <td class="py-3"><?= $cr['user_id'] ?></td>
+                                        <td class="py-3"><?= $cr['firstname'] ?></td>
 
                                         
 
