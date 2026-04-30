@@ -2,7 +2,6 @@ login_logique
 <?php
 session_start();
 require '../scripts/connection.php';
-include  '../public/dashboard.php';
 function getPassword($email, $password, $conn)
 {
     try {
